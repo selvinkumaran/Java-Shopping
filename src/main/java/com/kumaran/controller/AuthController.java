@@ -7,6 +7,7 @@ import com.kumaran.utils.AppException;
 import com.kumaran.utils.StringUtils;
 import com.kumaran.view.AuthPage;
 import com.kumaran.view.LoginPage;
+import com.kumaran.view.LogoutPage;
 import com.kumaran.view.RegisterPage;
 
 import java.io.FileNotFoundException;
@@ -25,6 +26,7 @@ public class AuthController implements I_AuthController {
     private final HomeController homeController;
     private final LoginPage loginPage;
     private final RegisterPage registerPage;
+    private final LogoutPage logoutPage;
 
     private final AuthPage authPage;
 
@@ -33,6 +35,7 @@ public class AuthController implements I_AuthController {
         homeController = new HomeController(this);
         loginPage = new LoginPage();
         registerPage = new RegisterPage();
+        logoutPage = new LogoutPage();
     }
 
     @Override
@@ -60,10 +63,15 @@ public class AuthController implements I_AuthController {
         password = enterString(StringUtils.ENTER_PASSWORD);
 
         User user = validateUser(email, password);
-        if (user != null) {
+        if (user.getEmail().equals("admin@admin.com") && user.getPassword().equals(("admin"))&&user != null) {
+            setLoggedInUser(user);
+            loginPage.printLoginSuccessful();
+            homeController.printAdminMenu();
+        } else if (user != null) {
             setLoggedInUser(user);
             loginPage.printLoginSuccessful();
             homeController.printMenu();
+
         } else {
             loginPage.printInvalidCredentials();
             authMenu();
@@ -99,6 +107,7 @@ public class AuthController implements I_AuthController {
 
     @Override
     public void logout() {
+        logoutPage.printLogout();
 
     }
 
@@ -115,10 +124,11 @@ public class AuthController implements I_AuthController {
                         user.setName(userArray[1]);
                         user.setEmail(userArray[2]);
                         user.setPassword(userArray[3]);
-                        if (user.getEmail().equals("admin@admin.com"))
+                        if (user.getEmail().equals("admin@admin.com") && user.getPassword().equals(("admin"))) {
                             user.setRole(Role.ADMIN);
-                        else
+                        } else {
                             user.setRole(Role.USER);
+                        }
                         return user;
                     }
                 }
@@ -131,7 +141,9 @@ public class AuthController implements I_AuthController {
     }
 
     private void invalidChoice(AppException e) {
+        println(StringUtils.STYLE);
         println(e.getMessage());
+        println(StringUtils.STYLE);
         authMenu();
     }
 }

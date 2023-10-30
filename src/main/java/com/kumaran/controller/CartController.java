@@ -5,6 +5,7 @@ import com.kumaran.models.*;
 import com.kumaran.utils.AppException;
 import com.kumaran.utils.StringUtils;
 import com.kumaran.view.CartPage;
+import com.kumaran.view.OrdersPage;
 
 import java.util.ArrayList;
 
@@ -20,9 +21,10 @@ public class CartController implements I_CartController {
     private final OrderController orderController;
     private final CartPage cartPage;
 
+
     public CartController(HomeController homeController) {
         this.homeController = homeController;
-        orderController = new OrderController(homeController);
+        orderController = new OrderController(homeController, null, null);
         cartPage = new CartPage();
     }
 

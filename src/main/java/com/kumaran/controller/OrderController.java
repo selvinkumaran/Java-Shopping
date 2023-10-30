@@ -3,6 +3,7 @@ package com.kumaran.controller;
 import com.kumaran.controller.impl.I_OrderController;
 import com.kumaran.models.CartProduct;
 import com.kumaran.models.User;
+import com.kumaran.view.OrdersPage;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,9 +14,14 @@ import static com.kumaran.utils.UserUtils.getLoggedInUser;
 public class OrderController implements I_OrderController {
 
     private final HomeController homeController;
+    private final OrdersPage ordersPage;
+    private final AdminController adminController;
 
-    public OrderController(HomeController homeController) {
+
+    public OrderController(HomeController homeController, OrdersPage ordersPage, AdminController adminController) {
         this.homeController = homeController;
+        this.ordersPage = ordersPage;
+        this.adminController = adminController;
     }
 
     @Override
@@ -41,5 +47,12 @@ public class OrderController implements I_OrderController {
 
         getLoggedInUser().setUserCart(null);
         homeController.printMenu();
+    }
+
+    @Override
+    public void showOrders(){
+        ordersPage.printOrders();
+        adminController.viewOrders();
+
     }
 }

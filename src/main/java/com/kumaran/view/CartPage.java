@@ -9,11 +9,16 @@ import static com.kumaran.utils.Utils.println;
 
 public class CartPage {
     public void printEmptyCart() {
+        println(StringUtils.STYLE);
         println(StringUtils.EMPTY_CART);
+        println(StringUtils.STYLE);
+
     }
 
     public void printCart(ArrayList<CartProduct> cartProducts) {
+        println(StringUtils.STYLE);
         println(StringUtils.CART);
+        println(StringUtils.STYLE);
         double total = 0;
         for (CartProduct cartProduct : cartProducts) {
             total += cartProduct.getCount() * cartProduct.getProduct().getPrice();
