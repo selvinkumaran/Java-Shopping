@@ -1,0 +1,4 @@
+Your Order are:
+Shirt x 1 = Rs. 105.0
+iPhone x 1 = Rs. 1000.0
+Total - Rs. 1105.0
