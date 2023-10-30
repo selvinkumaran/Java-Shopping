@@ -66,3 +66,25 @@ Utils:
 Asserts:
 -------
         --> * csv files
+
+Technology Used:
+                  Class
+                  Object
+                  Constructed
+                  Interface
+                  Abstraction --> Achieve using an Interface
+                  Exception --> throws and try-catch, Custom Exception
+                  File Handling --> BufferedReader, fileWriter, CSVWriter, FileReader, CSVReader.
+                  Collection --> ArrayList
+                  For Each Loop
+                  If, else If, else
+                  Scanner Class
+                  Bean Class
+                  Dependencies --> CVSWriter
+
+Faced Challenges :
+                  Exception --> NullPointerException, NumberFormatterException, ArrayIndexOutOfBoundsException, FileNotFoundException
+                  Object --> Null
+
+
+
